@@ -12,17 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('settings', function (Blueprint $table) {
-            $table->id();
-            $table->text('site_title');
-            $table->text('description')->nullable();
-            $table->text('address')->nullable();
-            $table->text('social_media')->nullable();
-            $table->text('google_map')->nullable();
-            $table->text('contact_details')->nullable();
-            $table->text('phone')->nullable();
-            $table->text('mobile_number')->nullable();
-            $table->text('email')->nullable();
-            $table->text('footer_text')->nullable();
+            $table->bigIncrements('id');
+            $table->string('key')->unique();
+            $table->string('value')->nullable();
             $table->timestamps();
         });
     }
