@@ -10,6 +10,12 @@ class Setting extends Model
     use HasFactory;
     protected $fillable = [
         'key',
+        'label',
         'value',
+        'type',
+        'attributes',
+    ];
+    protected $casts = [
+        'attributes' => 'array',
     ];
 }

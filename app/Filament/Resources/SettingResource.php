@@ -6,6 +6,8 @@ use App\Filament\Resources\SettingResource\Pages;
 use App\Filament\Resources\SettingResource\RelationManagers;
 use App\Models\Setting;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -26,8 +28,19 @@ class SettingResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('key')->label('key'),
-                Forms\Components\TextInput::make('value')->label('Value'),
+                Tables\Columns\TextColumn::make('key')
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('label')
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('type')
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('value')
+                    ->formatStateUsing(fn ($state) => $state === null ? 'Empty' : $state)
+                    ->sortable()
+                    ->searchable(),
             ]);
     }
 
@@ -35,8 +48,18 @@ class SettingResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('key'),
-                TextColumn::make('value'),
+                TextColumn::make('key')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('label')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('type')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('value')
+                    ->sortable()
+                    ->searchable(),
             ])
             ->filters([
                 //

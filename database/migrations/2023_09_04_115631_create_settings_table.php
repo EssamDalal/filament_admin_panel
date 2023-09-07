@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Setting;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,8 +14,11 @@ return new class extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('key')->unique();
-            $table->string('value')->nullable();
+            $table->string('key')->primary();
+            $table->string('label');
+            $table->text('value')->nullable();
+            $table->json('attributes')->nullable();
+            $table->string('type');
             $table->timestamps();
         });
     }
